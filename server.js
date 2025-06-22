@@ -7,7 +7,7 @@ import AdminRoute from './routes/AdminRoute.js'
 import cookieParser from "cookie-parser"
 import FinanceRoute from './routes/FinanceRoute.js';
 import BasicFinanceRoute from './routes/BasicFinanceRoute.js';
-import IncomeRoute from './routes/incomeRoute.js';
+import IncomeRoute from './routes/IncomeRoute.js';
 import ExpenseRoute from './routes/ExpenseRouter.js';
 
 
