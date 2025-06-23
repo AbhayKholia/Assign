@@ -22,7 +22,7 @@ Dbconnection()
 app.use(cookieParser()); 
 app.use(express.json())
 app.use(cors({
-  origin: ["http://localhost:5173" , "https://assi-fe-1.onrender.com"], 
+  origin: ["http://localhost:5173" , "https://assi-fe-1.onrender.com "], 
   credentials: true              
 }));
 
@@ -34,9 +34,7 @@ app.use('/api/income', IncomeRoute);
 app.use('/api/expense', ExpenseRoute);
 
 
-app.get('/' , (req ,res)=>{
-    res.send('test')
-})
+
 
 app.listen(PORT , () => {
     console.log(`Server is listenin port ${PORT}`,)
