@@ -22,7 +22,7 @@ Dbconnection()
 app.use(cookieParser()); // ✅ spelling sahi ho
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:5173', // ✅ YOUR React app's origin
+  origin: 'https://assi-fe-1.onrender.com', // ✅ YOUR React app's origin
   credentials: true               // ✅ Allow cookies/token
 }));
 
