@@ -1,34 +1,52 @@
-import jwt from "jsonwebtoken"
-import UserModel from "../models/user.js"
+import  jwt from 'jsonwebtoken'
+import UserModel from '../models/user.js'
 
 
-const isLogin = async (req , res,next)=>{
+const isAdmin=async(req,res,next)=>{
     try {
-const token = req.cookies.token;
-        if (!token){
-            res.status(401).json({
-                message:"Unauthorized : No token Provided"
-            })
-        }
-        const decoded = jwt.verify(token , process.env.JWT_SECRETE )
-        const user = await UserModel.findById(decoded.userId)
+         const token=req.cookies.token
+         if (!token) {
+            return res.status(401).json({messsage:"'Unauthorized: No token provided'"})
+         }
 
-        if(!user){
-            return res.status(404).json({message:"User Not Found"})
-        }
+         const decoded= jwt.verify(token,process.env.JWT_SECRETE)
+         const user=await UserModel.findById(decoded.userId)
+         if (!user) {
+            return res.status(401).json({messsage:"'user not found'"})
+         }
 
-        if(user.role !== 'admin'){
-            return res.status(403).json({message:"unauthorized: user is not an admin"})
-        }
-        req.user= user
-        next();
-
+         if (user.role !=='admin') {
+            return res.status(403).json({messsage:'Unauthorized: User is not an admin'})
+         }
+       req.user=user
+         next()
+      
     } catch (error) {
-                console.log(error)
-
+        console.log(error)
     }
 }
 
+const IsUser=async(req,res,next)=>{
+   try {
+      const token=req.cookies.token
+      if (!token) {
+         return res.status(401).json({messsage:"'Unauthorized: No token provided'"})
+      }
+
+      const decoded= jwt.verify(token,process.env.JWT_SECRETE)
+      const user=await UserModel.findById(decoded.userId)
+      if (!user) {
+         return res.status(401).json({messsage:"'user not found'"})
+      }
+
+    
+    req.user=user
+      next()
+   
+ } catch (error) {
+     console.log(error)
+ }
+}
 
 
-export {isLogin}
+export {isAdmin,IsUser}

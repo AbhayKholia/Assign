@@ -1,5 +1,5 @@
 
-import FinancialDataModel from '../models/FinancialData.js';
+import FinancialDataModel from '../models/FinancialIncomeData.js';
 
 const calculateIncome = async (req, res) => {
   try {
